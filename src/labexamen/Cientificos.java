@@ -11,10 +11,10 @@ import java.util.ArrayList;
  * @author xavie
  */
 public class Cientificos {
-    protected ArrayList<Planetas> planetas;
+    ArrayList<Planetas> planetas;
      protected String nombreC;
 
-    public Cientificos(ArrayList<Planetas> planetas, String nombre) {
+    public Cientificos(ArrayList<Planetas> planetas, String nombreC) {
         this.planetas = planetas;
         this.nombreC = nombreC;
     }

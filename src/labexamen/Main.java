@@ -34,7 +34,7 @@ public class Main extends javax.swing.JFrame {
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         planetas();
-        model = (DefaultTreeModel) tree_planetas.getModel();
+        model = (DefaultTreeModel) Jtree.getModel();
         raiz = new DefaultMutableTreeNode("Planetas");
     }
 
@@ -44,128 +44,151 @@ public class Main extends javax.swing.JFrame {
 
         jProgressBar1 = new javax.swing.JProgressBar();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tree_planetas = new javax.swing.JTree();
-        tf_planeta1 = new javax.swing.JTextField();
-        tf_planeta2 = new javax.swing.JTextField();
-        cb_cientificos = new javax.swing.JComboBox<>();
+        Jtree = new javax.swing.JTree();
+        tfplaneta = new javax.swing.JTextField();
+        tfplanetas = new javax.swing.JTextField();
+        Cbcientificos = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        cb_publicos = new javax.swing.JCheckBox();
-        tf_nombreCientifico = new javax.swing.JTextField();
-        btn_addCientifico = new javax.swing.JButton();
-        btn_colisionar = new javax.swing.JButton();
+        publico = new javax.swing.JCheckBox();
+        nombreC = new javax.swing.JTextField();
+        agregar = new javax.swing.JButton();
+        colisionar = new javax.swing.JButton();
+        jProgressBar2 = new javax.swing.JProgressBar();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("root");
-        tree_planetas.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
-        jScrollPane1.setViewportView(tree_planetas);
+        Jtree.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        jScrollPane1.setViewportView(Jtree);
 
-        tf_planeta1.setEditable(false);
+        tfplaneta.setEditable(false);
 
-        tf_planeta2.setEditable(false);
+        tfplanetas.setEditable(false);
+        tfplanetas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfplanetasActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Científicos");
 
         jLabel2.setText("Nombre");
 
-        cb_publicos.setText("Públicos");
-        cb_publicos.addItemListener(new java.awt.event.ItemListener() {
+        publico.setText("Publico");
+        publico.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                cb_publicosItemStateChanged(evt);
+                publicoItemStateChanged(evt);
             }
         });
 
-        btn_addCientifico.setText("Añadir Científico");
-        btn_addCientifico.addActionListener(new java.awt.event.ActionListener() {
+        agregar.setText("Añadir Científico");
+        agregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_addCientificoActionPerformed(evt);
+                agregarActionPerformed(evt);
             }
         });
 
-        btn_colisionar.setText("Colisionar");
+        colisionar.setText("Colisionar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 692, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(49, 49, 49)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(tf_planeta1)
-                            .addComponent(tf_planeta2)
-                            .addComponent(cb_cientificos, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2)
-                            .addComponent(tf_nombreCientifico)
-                            .addComponent(btn_addCientifico, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))
-                        .addGap(34, 34, 34)
-                        .addComponent(btn_colisionar, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(17, 17, 17)
-                        .addComponent(cb_publicos)))
-                .addContainerGap(37, Short.MAX_VALUE))
+                        .addComponent(publico)
+                        .addGap(133, 133, 133))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(71, 71, 71)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(jLabel2))
+                            .addComponent(nombreC, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(colisionar, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Cbcientificos, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tfplaneta, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tfplanetas, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 692, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jProgressBar2, javax.swing.GroupLayout.PREFERRED_SIZE, 692, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
+                .addGap(32, 32, 32)
+                .addComponent(jProgressBar2, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(publico)
+                        .addGap(76, 76, 76))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(tfplaneta, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(tf_planeta1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(tf_planeta2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(1, 1, 1)
-                                .addComponent(btn_colisionar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGap(51, 51, 51)
+                        .addComponent(tfplanetas, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cb_cientificos, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27)
-                        .addComponent(jLabel2)
+                        .addComponent(Cbcientificos, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tf_nombreCientifico, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28)
-                        .addComponent(btn_addCientifico, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addComponent(cb_publicos)
-                .addContainerGap(23, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(18, 18, 18)
+                                .addComponent(nombreC, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(colisionar, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(44, 44, 44)
+                        .addComponent(agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(177, 177, 177))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cb_publicosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cb_publicosItemStateChanged
-        if (cb_publicos.isSelected()) {
+    private void publicoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_publicoItemStateChanged
+        if (publico.isSelected()) {
             clearTree();
             llenarJTreeDefault();
         } else {
             clearTree();
         }
-    }//GEN-LAST:event_cb_publicosItemStateChanged
+    }//GEN-LAST:event_publicoItemStateChanged
 
-    private void btn_addCientificoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_addCientificoActionPerformed
-        if (!tf_nombreCientifico.getText().equals("")) {
-
-            cientificos.add(new Cientificos(tf_nombreCientifico.getText()));
+    private void agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarActionPerformed
+        if (!nombreC.getText().equals("")) {
+            cientificos.add(new Cientificos(nombreC.getText()));
+            
             llenarComboBox();
-            tf_nombreCientifico.setText("");
+            nombreC.setText("");
             guardarCientifico();
         }
-    }//GEN-LAST:event_btn_addCientificoActionPerformed
+    }//GEN-LAST:event_agregarActionPerformed
+
+    private void tfplanetasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfplanetasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfplanetasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -229,9 +252,9 @@ public class Main extends javax.swing.JFrame {
     }
 
     public void llenarComboBox() {
-        cb_cientificos.removeAllItems();
+        Cbcientificos.removeAllItems();
         for (Cientificos c : cientificos) {
-            cb_cientificos.addItem(c.nombreC);
+            Cbcientificos.addItem(c.nombreC);
         }
     }
  public void planetas() {
@@ -245,18 +268,19 @@ public class Main extends javax.swing.JFrame {
         planetas.add(new Gaseoso(200000, 20000, "Neptuno", 840, 900));
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_addCientifico;
-    private javax.swing.JButton btn_colisionar;
-    private javax.swing.JComboBox<String> cb_cientificos;
-    private javax.swing.JCheckBox cb_publicos;
+    private javax.swing.JComboBox<String> Cbcientificos;
+    private javax.swing.JTree Jtree;
+    private javax.swing.JButton agregar;
+    private javax.swing.JButton colisionar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JProgressBar jProgressBar1;
+    private javax.swing.JProgressBar jProgressBar2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField tf_nombreCientifico;
-    private javax.swing.JTextField tf_planeta1;
-    private javax.swing.JTextField tf_planeta2;
-    private javax.swing.JTree tree_planetas;
+    private javax.swing.JTextField nombreC;
+    private javax.swing.JCheckBox publico;
+    private javax.swing.JTextField tfplaneta;
+    private javax.swing.JTextField tfplanetas;
     // End of variables declaration//GEN-END:variables
 
    
