@@ -8,6 +8,10 @@ package labexamen;
  *
  * @author xavie
  */
-public class Gaseoso {
-    
+public class Gaseoso extends Planetas {
+
+    public Gaseoso(double tamano, double peso, String nombre, double x, double y) {
+        super(tamano, peso, nombre, x, y);
+    }
+
 }
