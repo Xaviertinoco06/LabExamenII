@@ -258,12 +258,12 @@ public class Main extends javax.swing.JFrame {
 
     private void plan1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plan1ActionPerformed
         plan1.setText(elegirplan);
-        jPopupMenu1.setVisible(false);
+        jPopupMenu1.setVisible(true);
     }//GEN-LAST:event_plan1ActionPerformed
 
     private void plan2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plan2ActionPerformed
         plan2.setText(elegirplan);
-        jPopupMenu1.setVisible(false);
+        jPopupMenu1.setVisible(true);
     }//GEN-LAST:event_plan2ActionPerformed
 
     /**
