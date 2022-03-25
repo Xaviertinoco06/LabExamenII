@@ -75,7 +75,10 @@ public class Planetas {
             this.y = y;
         }
         
-
+public boolean porsentaje(int media){
+        int numero = r.nextInt(100);
+        return numero<=media;
+    }
     
 }
     
