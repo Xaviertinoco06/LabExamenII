@@ -4,18 +4,19 @@
  */
 package labexamen;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author xavie
  */
-public class Cientificos {
+public class Cientificos implements Serializable {
     ArrayList<Planetas> planetas;
      protected String nombreC;
 
-    public Cientificos(ArrayList<Planetas> planetas, String nombreC) {
-        this.planetas = planetas;
+    public Cientificos(String nombreC) {
+       
         this.nombreC = nombreC;
     }
 
