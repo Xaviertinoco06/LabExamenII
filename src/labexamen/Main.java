@@ -19,7 +19,9 @@ import javax.swing.plaf.metal.MetalLookAndFeel;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 
-
+/*
+@author xavie
+*/
 public class Main extends javax.swing.JFrame {
    Cintificos cientificoSeleccionado;
   int distancia = 0;
