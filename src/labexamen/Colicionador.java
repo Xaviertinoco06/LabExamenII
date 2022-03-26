@@ -26,7 +26,7 @@ import javax.swing.plaf.metal.MetalLookAndFeel;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 
-public class Main extends javax.swing.JFrame {
+public class Colicionador extends javax.swing.JFrame {
 
     ArrayList<Planetas> planetas;
     ArrayList<Cientificos> cientificos;
@@ -34,8 +34,11 @@ public class Main extends javax.swing.JFrame {
     DefaultTreeModel model;
     double distancia;
     String elegirplan = "";
+    Cientificos cientificoelg;
+    Planetas planeta1;
+    Planetas planeta2;
 
-    public Main() {
+    public Colicionador() {
         cientificos = new ArrayList<>();
         planetas = new ArrayList<>();
         initComponents();
@@ -45,7 +48,7 @@ public class Main extends javax.swing.JFrame {
 
         this.setLocationRelativeTo(null);
         planetas();
-        llenarComboBox();
+        agregarcombo();
         model = (DefaultTreeModel) Jtree.getModel();
         raiz = new DefaultMutableTreeNode("Planetas");
     }
@@ -68,8 +71,8 @@ public class Main extends javax.swing.JFrame {
         agregar = new javax.swing.JButton();
         colisionar = new javax.swing.JButton();
         jProgressBar2 = new javax.swing.JProgressBar();
-        planeta2 = new javax.swing.JTextField();
-        planeta1 = new javax.swing.JTextField();
+        planetas2 = new javax.swing.JTextField();
+        planetas1 = new javax.swing.JTextField();
 
         plan1.setText("jMenuItem1");
         plan1.addActionListener(new java.awt.event.ActionListener() {
@@ -97,6 +100,17 @@ public class Main extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(Jtree);
+
+        Cbcientificos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CbcientificosMouseClicked(evt);
+            }
+        });
+        Cbcientificos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CbcientificosActionPerformed(evt);
+            }
+        });
 
         Cientificos.setText("Científicos");
 
@@ -128,9 +142,9 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
-        planeta2.addActionListener(new java.awt.event.ActionListener() {
+        planetas2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                planeta2ActionPerformed(evt);
+                planetas2ActionPerformed(evt);
             }
         });
 
@@ -141,22 +155,35 @@ public class Main extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(71, 71, 71)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(planeta2)
-                            .addComponent(nombreC, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                            .addComponent(Cbcientificos, 0, 200, Short.MAX_VALUE)
-                            .addComponent(jLabel2)
-                            .addComponent(planeta1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(138, 138, 138)
+                                .addComponent(Cientificos)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(Cbcientificos, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(planetas2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(nombreC, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(58, 58, 58))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(jLabel2)
+                                        .addGap(135, 135, 135)))))
                         .addComponent(colisionar, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(20, 20, 20))
+                        .addGap(15, 15, 15))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Cientificos))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(72, 72, 72)
+                                .addComponent(planetas1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(57, 57, 57)
+                                .addComponent(agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -177,31 +204,30 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(jProgressBar2, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(publico)
-                        .addGap(64, 64, 64))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(planeta1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(planeta2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(Cientificos)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(planetas1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(colisionar, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(Cbcientificos, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(2, 2, 2)
-                                .addComponent(jLabel2)
+                                .addComponent(planetas2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(Cientificos)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(nombreC, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(colisionar, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(49, 49, 49)
-                        .addComponent(agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(177, 177, 177))))
+                                .addComponent(Cbcientificos, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel2)
+                                .addGap(15, 15, 15)
+                                .addComponent(nombreC, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(71, 71, 71)))
+                        .addGap(5, 5, 5)
+                        .addComponent(agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(publico)
+                .addGap(64, 64, 64))
         );
 
         pack();
@@ -209,10 +235,11 @@ public class Main extends javax.swing.JFrame {
 
     private void publicoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_publicoItemStateChanged
         if (publico.isSelected()) {
-            clearTree();
+            remover();
             llenarJTreeDefault();
         } else {
-            clearTree();
+            remover();
+
         }
     }//GEN-LAST:event_publicoItemStateChanged
 
@@ -220,7 +247,7 @@ public class Main extends javax.swing.JFrame {
         if (!nombreC.getText().equals("")) {
             cientificos.add(new Cientificos(nombreC.getText()));
 
-            llenarComboBox();
+            agregarcombo();
             AgregarCientificos();
             nombreC.setText("");
             guardarCientifico();
@@ -229,13 +256,12 @@ public class Main extends javax.swing.JFrame {
 
 
     private void colisionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_colisionarActionPerformed
-        double planeta1x = returnPlanet(planeta1.getText()).getX();
-        double planeta2x = returnPlanet(planeta2.getText()).getX();
-        double planeta1y = returnPlanet(planeta1.getText()).getY();
-        double planeta2y = returnPlanet(planeta2.getText()).getY();
-        distancia = Math.sqrt((Math.pow(planeta2x - planeta1x, 2)) + (Math.pow(planeta2y - planeta1y, 2)));
-        hilo = new Thread();
-        jProgressBar2.setMaximum((int) distancia);
+        planeta1 =  buscarPlaneta(planetas1.getText());
+       planeta2 =  buscarPlaneta(planetas2.getText());
+        System.out.println(planeta1);
+       double DistanciaEntrePlanetas = Math.sqrt(Math.pow((planeta1.x-planeta2.x),2)+Math.pow((planeta1.y-planeta2.y),2));
+        DistanciaEntrePlanetas = (int) DistanciaEntrePlanetas;
+        hilo hilo = new hilo();
         hilo.start();
     }//GEN-LAST:event_colisionarActionPerformed
 
@@ -243,16 +269,26 @@ public class Main extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_publicoActionPerformed
 
-    private void planeta2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_planeta2ActionPerformed
+    private void planetas2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_planetas2ActionPerformed
 
-    }//GEN-LAST:event_planeta2ActionPerformed
+    }//GEN-LAST:event_planetas2ActionPerformed
 
     private void JtreeValueChanged(javax.swing.event.TreeSelectionEvent evt) {//GEN-FIRST:event_JtreeValueChanged
-
-        jPopupMenu1.setVisible(true);
+        String planeta="";
+        try{
+    if((planeta = Jtree.getSelectionPath().toString())!=null){
+    jPopupMenu1.setVisible(true);
         jPopupMenu1.setLocation(getPointerInfo().getLocation());
-        String planeta = Jtree.getSelectionPath().toString();
+        planeta = Jtree.getSelectionPath().toString();
         elegirplan = planeta.replace("[Planetas, ", "").replace("]", "");
+}
+        }catch(Exception x){
+            
+        }
+            
+                
+            
+        
 
     }//GEN-LAST:event_JtreeValueChanged
 
@@ -265,6 +301,19 @@ public class Main extends javax.swing.JFrame {
         plan2.setText(elegirplan);
         jPopupMenu1.setVisible(true);
     }//GEN-LAST:event_plan2ActionPerformed
+
+    private void CbcientificosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CbcientificosActionPerformed
+      
+        
+    }//GEN-LAST:event_CbcientificosActionPerformed
+
+    private void CbcientificosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CbcientificosMouseClicked
+       if(Cbcientificos.getSelectedItem()!=null){
+        cientificoelg = buscarC(String.valueOf(Cbcientificos.getSelectedItem()));
+        remover();
+        llenarJTreeCient(cientificoelg);
+        }
+    }//GEN-LAST:event_CbcientificosMouseClicked
 
     /**
      * @param args the command line arguments
@@ -283,20 +332,21 @@ public class Main extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Colicionador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Colicionador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Colicionador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Colicionador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Main().setVisible(true);
+                new Colicionador().setVisible(true);
             }
         });
     }
@@ -322,12 +372,12 @@ public class Main extends javax.swing.JFrame {
         model.setRoot(raiz);
     }
 
-    public void clearTree() {
+    public void remover() {
         raiz.removeAllChildren();
         model.reload();
     }
 
-    public void llenarComboBox() {
+    public void agregarcombo() {
         Cbcientificos.removeAllItems();
         for (Cientificos c : cientificos) {
             Cbcientificos.addItem(c.nombreC);
@@ -359,8 +409,8 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JTextField nombreC;
     private javax.swing.JMenuItem plan1;
     private javax.swing.JMenuItem plan2;
-    private javax.swing.JTextField planeta1;
-    private javax.swing.JTextField planeta2;
+    private javax.swing.JTextField planetas1;
+    private javax.swing.JTextField planetas2;
     private javax.swing.JCheckBox publico;
     // End of variables declaration//GEN-END:variables
 
@@ -403,8 +453,23 @@ public class Main extends javax.swing.JFrame {
             }
         }
     }
+    public Cientificos buscarC(String nombre){
+        for(Cientificos science: cientificos){
+            if(science.nombreC.equals(nombre)){
+                return science;
+            }
+        }
+        return null;
+    }
+    public void llenarJTreeCient(Cientificos scien){
+        for(Planetas plan: scien.planetas){
+            DefaultMutableTreeNode hijo = new DefaultMutableTreeNode(plan.nombre);
+            raiz.add(hijo);
+        }
+        model.setRoot(raiz);
+    }
 
-    Thread hilo = new Thread();
+   class hilo extends Thread{
     boolean colisiono = false;
 
     public void run() {
@@ -435,3 +500,12 @@ public class Main extends javax.swing.JFrame {
     }
 
 }
+   public Planetas buscarPlaneta(String nombre){
+        for(Planetas plan: planetas){
+            if(plan.nombre.equals(nombre)){
+                return plan;
+            }
+        }
+        return null;
+    }}
+
