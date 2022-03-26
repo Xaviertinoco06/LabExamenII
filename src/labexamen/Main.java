@@ -24,7 +24,10 @@ import javax.swing.tree.DefaultTreeModel;
  * @author Dana Romero
  */
 public class Main extends javax.swing.JFrame {
-
+   Cintificos cientificoSeleccionado;
+  int distancia = 0;
+    Planetas planeta1;
+    Planetas planeta2;
     DefaultMutableTreeNode raiz;
     DefaultTreeModel model;
     ArrayList<Planetas> planetasDefault;
@@ -50,7 +53,7 @@ public class Main extends javax.swing.JFrame {
         planetasDefault();
 
         cargarCientificos();
-        llenarComboBox();
+        cb();
         model = (DefaultTreeModel) Jtree.getModel();
         raiz = new DefaultMutableTreeNode("Planetas");
 
@@ -80,6 +83,7 @@ public class Main extends javax.swing.JFrame {
         cientificob = new javax.swing.JButton();
         Colisionadorb = new javax.swing.JButton();
         nrg = new javax.swing.JProgressBar();
+        jLabel4 = new javax.swing.JLabel();
 
         menus.setMinimumSize(new java.awt.Dimension(80, 50));
 
@@ -101,6 +105,8 @@ public class Main extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(750, 630));
+
+        simulador.setForeground(new java.awt.Color(153, 0, 51));
 
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("root");
         Jtree.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
@@ -151,41 +157,50 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
+        nrg.setForeground(new java.awt.Color(153, 255, 51));
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/labexamen/xd_1.jpg"))); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(58, 58, 58)
-                                .addComponent(jLabel2))
+                                .addGap(254, 254, 254)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(nombrecientifico, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(planetas2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cajacientifica, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cientificob, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(planetas1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(40, 40, 40)
-                                .addComponent(jLabel1))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(17, 17, 17)
-                        .addComponent(publico))
-                    .addComponent(nrg, javax.swing.GroupLayout.PREFERRED_SIZE, 692, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(simulador, javax.swing.GroupLayout.PREFERRED_SIZE, 692, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(90, 90, 90))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addGap(254, 254, 254)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(nombrecientifico, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(planetas2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(cajacientifica, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(cientificob, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(planetas1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(Colisionadorb, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(142, Short.MAX_VALUE))
+                                .addGap(17, 17, 17)
+                                .addComponent(publico)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Colisionadorb, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(54, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(simulador, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 692, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(58, 58, 58)
+                                        .addComponent(jLabel2))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(40, 40, 40)
+                                        .addComponent(jLabel1))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(26, 26, 26)
+                                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(nrg, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 692, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -195,6 +210,12 @@ public class Main extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(nrg, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(93, 93, 93)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(publico)
+                        .addContainerGap(118, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -214,13 +235,9 @@ public class Main extends javax.swing.JFrame {
                                 .addGap(82, 82, 82)
                                 .addComponent(Colisionadorb, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(21, 21, 21)
-                        .addComponent(cientificob, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(93, 93, 93)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(publico)))
-                .addContainerGap(250, Short.MAX_VALUE))
+                        .addComponent(cientificob, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
 
         pack();
@@ -229,7 +246,7 @@ public class Main extends javax.swing.JFrame {
     private void publicoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_publicoItemStateChanged
         if (publico.isSelected()) {
             clearTree();
-            llenarJTreeDefault();
+            defecto();
         } else {
             clearTree();
             if (cajacientifica.getSelectedItem() != null) {
@@ -243,7 +260,7 @@ public class Main extends javax.swing.JFrame {
         if (!nombrecientifico.getText().equals("")) {
 
             cientificos.add(new Cintificos(nombrecientifico.getText()));
-            llenarComboBox();
+            cb();
             nombrecientifico.setText("");
             guardarCientifico();
         }
@@ -258,25 +275,19 @@ public class Main extends javax.swing.JFrame {
                 selectedPlaneta = planeta.replace("[Planetas, ", "").replace("]", "");
             }
         } catch (Exception ex) {
-
         }
-
-
     }//GEN-LAST:event_JtreeValueChanged
 
     private void plan1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plan1ActionPerformed
         planetas1.setText(selectedPlaneta);
         menus.setVisible(false);
-
     }//GEN-LAST:event_plan1ActionPerformed
 
     private void plan2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plan2ActionPerformed
         planetas2.setText(selectedPlaneta);
         menus.setVisible(false);
     }//GEN-LAST:event_plan2ActionPerformed
-    Cintificos cientificoSeleccionado;
 
-    ;
     private void cajacientificaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cajacientificaMouseClicked
         if (cajacientifica.getSelectedItem() != null) {
             cientificoSeleccionado = buscarCientifico(String.valueOf(cajacientifica.getSelectedItem()));
@@ -284,16 +295,14 @@ public class Main extends javax.swing.JFrame {
         }
         if (publico.isSelected()) {
             clearTree();
-            llenarJTreeDefault();
+            defecto();
         } else {
             clearTree();
             llenarJTreeCient(cientificoSeleccionado);
         }
 
     }//GEN-LAST:event_cajacientificaMouseClicked
-    int distancia = 0;
-    Planetas planeta1;
-    Planetas planeta2;
+  
     private void ColisionadorbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ColisionadorbActionPerformed
         planeta1 = buscarPlaneta(planetas1.getText());
         planeta2 = buscarPlaneta(planetas2.getText());
@@ -308,38 +317,13 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_JtreeMouseClicked
 
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
+      
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Main().setVisible(true);
             }
         });
     }
-
     public void planetasDefault() {
         planetasDefault.add(new Terrestres(5000, 13000, "Mercurio", 400, 300));
         planetasDefault.add(new Terrestres(100000, 15000, "Venus", 640, 260));
@@ -359,36 +343,8 @@ public class Main extends javax.swing.JFrame {
         planetas.add(new Gaseosos(200000, 20000, "Urano", 670, 690));
         planetas.add(new Gaseosos(200000, 20000, "Neptuno", 840, 900));
         planetas.add(new Gaseosos(100000, 150000, "Planeta Vegetta", 900, 850));
-    }
-
-    private void guardarCientifico() {
-        try {
-            ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream("./cientificos.dr"));
-            for (Cintificos c : cientificos) {
-                os.writeObject(c);
-            }
-        } catch (Exception ex) {
-
-        }
-    }
-
-    private void cargarCientificos() {
-        try {
-            ObjectInputStream os = new ObjectInputStream(new FileInputStream("./cientificos.dr"));
-            Cintificos cientifico;
-            while ((cientifico = (Cintificos) os.readObject()) != null) {
-                cientificos.add(cientifico);
-                for (Planetas p : cientifico.planetas) {
-                    planetas.add(p);
-                }
-            }
-
-        } catch (Exception ex) {
-
-        }
-    }
-
-    public void llenarJTreeDefault() {
+    } 
+    public void defecto() {
 
         for (Planetas planeta : planetasDefault) {
             DefaultMutableTreeNode hijo = new DefaultMutableTreeNode(planeta.nombre);
@@ -397,6 +353,31 @@ public class Main extends javax.swing.JFrame {
 
         model.setRoot(raiz);
     }
+    private void guardarCientifico() {
+        try {
+            ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream("./Tenepiedad.plis"));
+            for (Cintificos c : cientificos) {
+                os.writeObject(c);
+            }
+        } catch (Exception ex) {
+
+        }
+    }
+    private void cargarCientificos() {
+        try {
+            ObjectInputStream os = new ObjectInputStream(new FileInputStream("./Tenepiedad.plis"));
+            Cintificos cientifico;
+            while ((cientifico = (Cintificos) os.readObject()) != null) {
+                cientificos.add(cientifico);
+                for (Planetas p : cientifico.planetas) {
+                    planetas.add(p);
+                }
+            }
+        } catch (Exception ex) {
+        }
+    }
+
+   
 
     public void llenarJTreeCient(Cintificos cient) {
         for (Planetas p : cient.planetas) {
@@ -411,7 +392,7 @@ public class Main extends javax.swing.JFrame {
         model.reload();
     }
 
-    public void llenarComboBox() {
+    public void cb() {
         cajacientifica.removeAllItems();
         for (Cintificos c : cientificos) {
             cajacientifica.addItem(c.nombreCientifico);
@@ -443,6 +424,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton cientificob;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPopupMenu menus;
     private javax.swing.JTextField nombrecientifico;
@@ -462,27 +444,22 @@ public class Main extends javax.swing.JFrame {
             simulador.setVisible(true);
             simulador.setMaximum(distancia);
             tiempo = 0;
-            // while(true){
+          
             try {
                 for (int i = 0; i <= distancia; i++) {
                     simulador.setValue(i);
                     Thread.sleep(5);
                     tiempo += 5;
                 }
-
                 Planetas creacion = planeta1.explotacion(planeta2);
-
                 if (creacion != null) {
                     planetas.add(creacion);
                     buscarCientifico(String.valueOf(cajacientifica.getSelectedItem())).planetas.add(creacion);
                     guardarCientifico();
-
                 }
-
                 ManotadasDeAHOGADO();
-                hilo2 hilo2 = new hilo2();
+                th2 hilo2 = new th2();
                 hilo2.start();
-
             } catch (InterruptedException e) {
           }} }
     public void ManotadasDeAHOGADO() {
@@ -491,14 +468,13 @@ public class Main extends javax.swing.JFrame {
         energia = (0.5 * ((planeta1.peso + planeta2.peso) / 2) * Math.pow(velocidad, 2));
         Random r = new Random();
         double nrgx = ThreadLocalRandom.current().nextDouble(energia, 2 * energia);
-        System.out.println("Tiempo = " + tiempoSec + "s");
-        System.out.println("Distancia = " + distancia);
-        System.out.println("Velocidad = " + velocidad);
-        System.out.println("Energía = " + energia);
-        System.out.println("Energía Máxima= " + nrgx);
+        System.out.println("t = " + tiempoSec + "s");
+        System.out.println("D = " + distancia);
+        System.out.println("V = " + velocidad);
+        System.out.println("E = " + energia);
+        System.out.println("EMx= " + nrgx);
     }
-    class hilo2 extends Thread {
-
+    class th2 extends Thread {
         public void run() {
             nrg.setVisible(true);
             nrg.setMaximum((int) energiaMax);
