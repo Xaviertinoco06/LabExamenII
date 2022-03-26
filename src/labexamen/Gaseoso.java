@@ -23,7 +23,7 @@ public class Gaseoso extends Planetas {
             double xn = (this.x + planeta2.x)/2;
             double yn = (this.y + planeta2.y)/2;
             
-            return new Gaseoso(tamanon,peson,nombre,xn,yn);
+            return new Gaseoso(tamanon,peson,nombreNuevo,xn,yn);
         }else{
             return null;
         }

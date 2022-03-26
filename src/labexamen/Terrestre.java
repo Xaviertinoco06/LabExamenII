@@ -16,11 +16,11 @@ public class Terrestre extends Planetas {
     public Planetas colision(String nombre, Planetas planeta2) {
         if(porsentaje(25)){
             String nombreNuevo = JOptionPane.showInputDialog(null, "Ponle Nombre");
-            double peson = (this.peso + planeta2.peso)/2;
+            double pesoN = (this.peso + planeta2.peso)/2;
             double tamanon = (this.tamano + planeta2.tamano)/2;
             double xn = (this.x + planeta2.x)/2;
             double yn = (this.y + planeta2.y)/2;
-            return new Terrestre(tamanon,peson,nombre,xn,yn);
+            return new Terrestre(tamanon,pesoN,nombre,xn,yn);
         }else{
             return null;
         }

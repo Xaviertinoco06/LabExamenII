@@ -12,12 +12,12 @@ import java.util.Random;
  * @author xavie
  */
 public class Planetas {
-    protected Random r = new Random();
-    protected String nombre;
-    protected double tamano;
-    protected double peso;
-    protected double x;
-    protected double y;
+ private Random r = new Random();
+    private String nombre;
+    private double tamano;
+    private double peso;
+    private double x;
+    private double y;
 
         public Planetas( double tamano, double peso,String nombre,double x, double y) {
             this.nombre = nombre;
