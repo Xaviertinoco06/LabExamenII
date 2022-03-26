@@ -1,86 +1,82 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package labexamen;
 
 import java.io.Serializable;
 import java.util.Random;
 
-/**
- *
- * @author xavie
- */
-public class Planetas {
- private Random r = new Random();
-    private String nombre;
-    private double tamano;
-    private double peso;
-    private double x;
-    private double y;
+public abstract class Planetas implements Serializable {
+    
+    static Random r = new Random();
+  
+    protected double tamaño;
+    protected double peso;
+    protected String nombre;
+    protected double x;
+    protected double y;
 
-        public Planetas( double tamano, double peso,String nombre,double x, double y) {
-            this.nombre = nombre;
-            this.tamano = tamano;
-            this.peso = peso;
-            this.x = x;
-            this.y = y;
-        }
+    public Planetas(double tamaño, double peso, String nombre, double x, double y) {
+        this.tamaño = tamaño;
+        this.peso = peso;
+        this.nombre = nombre;
+        this.x = x;
+        this.y = y;
+    }
 
-        public Random getR() {
-            return r;
-        }
+    public static Random getR() {
+        return r;
+    }
 
-        public void setR(Random r) {
-            this.r = r;
-        }
+    public static void setR(Random r) {
+        Planetas.r = r;
+    }
 
-        public String getNombre() {
-            return nombre;
-        }
+    public double getTamaño() {
+        return tamaño;
+    }
 
-        public void setNombre(String nombre) {
-            this.nombre = nombre;
-        }
+    public void setTamaño(double tamaño) {
+        this.tamaño = tamaño;
+    }
 
-        public double getTamano() {
-            return tamano;
-        }
+    public double getPeso() {
+        return peso;
+    }
 
-        public void setTamano(double tamano) {
-            this.tamano = tamano;
-        }
+    public void setPeso(double peso) {
+        this.peso = peso;
+    }
 
-        public double getPeso() {
-            return peso;
-        }
+    public String getNombre() {
+        return nombre;
+    }
 
-        public void setPeso(double peso) {
-            this.peso = peso;
-        }
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 
-        public double getX() {
-            return x;
-        }
+    public double getX() {
+        return x;
+    }
 
-        public void setX(double x) {
-            this.x = x;
-        }
+    public void setX(double x) {
+        this.x = x;
+    }
 
-        public double getY() {
-            return y;
-        }
+    public double getY() {
+        return y;
+    }
 
-        public void setY(double y) {
-            this.y = y;
-        }
-        
-public boolean porsentaje(int media){
-        int numero = r.nextInt(100);
-        return numero<=media;
+    public void setY(double y) {
+        this.y = y;
     }
     
-}
-    
-    
 
+    
+     public boolean probabilidad(int porcentaje){
+        int num = r.nextInt(100);
+        return num<=porcentaje;
+    }
+     public abstract Planetas explotacion(Planetas planeta2);
+    
+    
+}
